@@ -37,7 +37,10 @@ def __get_parent(root):
 def __get_dependencies(root):
     '''Find all artifact dependencies.'''
     dependencies = root.find(_tag('dependencies'))
-    return [__get_artifact_from_node(d) for d in dependencies]
+    if dependencies is not None:
+        return [__get_artifact_from_node(d) for d in dependencies]
+    else:
+        return list()
 
 def parse(filename):
     with open(filename) as f:
